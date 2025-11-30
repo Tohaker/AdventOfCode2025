@@ -1,6 +1,10 @@
-name: PR Checks
+name: Checks
 
-on: pull_request
+on: 
+  pull_request:
+  push:
+    branches:
+      - main
 
 jobs:
   checks:
