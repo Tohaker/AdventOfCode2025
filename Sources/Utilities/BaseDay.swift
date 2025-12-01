@@ -21,7 +21,10 @@ class BaseDay {
 
     init(day: Int) async throws {
         let path = ".env"
-        try DotEnv.load(path: path)
+
+        if ProcessInfo.processInfo.environment["CI"] == nil {
+            try DotEnv.load(path: path)
+        }
 
         let url = URL(string: "https://adventofcode.com/2025/day/\(day)/input")!
 
