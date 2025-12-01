@@ -19,8 +19,10 @@ import Testing
     #expect(Day1(input: input).part1() == 3)
 }
 
-@Test func day1part1() {
-    #expect(Day1(filename: "Day1.txt").part1() == 1078)
+@Test func day1part1() async throws {
+    let day = try await Day1(day: 1)
+
+    #expect(day.part1() == 1078)
 }
 
 @Test func day1part2ex1() {
@@ -40,6 +42,8 @@ import Testing
     #expect(Day1(input: input).part2() == 6)
 }
 
-@Test func day1part2() {
-    #expect(Day1(filename: "Day1.txt").part2() == 6412)
+@Test func day1part2() async throws {
+    let day = try await Day1(day: 1)
+
+    #expect(day.part2() == 6412)
 }

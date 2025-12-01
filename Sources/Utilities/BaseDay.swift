@@ -1,4 +1,6 @@
+import DotEnv
 import Foundation
+import FoundationNetworking
 
 class BaseDay {
     let input: [String]
@@ -15,6 +17,27 @@ class BaseDay {
                         "Inputs/\(filename)"),
                 encoding: .utf8
             ).components(separatedBy: "\n")
+    }
+
+    init(day: Int) async throws {
+        let path = ".env"
+        try DotEnv.load(path: path)
+
+        let url = URL(string: "https://adventofcode.com/2025/day/\(day)/input")!
+
+        if let session = ProcessInfo.processInfo.environment["SESSION_COOKIE"] {
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            request.setValue("session=\(session)", forHTTPHeaderField: "Cookie")
+
+            let (data, _) = try await URLSession.shared.data(for: request)
+
+            self.input =
+                String(bytes: data, encoding: String.Encoding.utf8)?.components(
+                    separatedBy: "\n") ?? []
+        } else {
+            throw NSError(domain: "Missing SESSION_COOKIE environment variable", code: 400)
+        }
     }
 
     func part1() -> Int {

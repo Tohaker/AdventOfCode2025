@@ -19,4 +19,6 @@ jobs:
       - uses: swift-actions/setup-swift@v2
       - name: Run ${{ matrix.command }}
         run: swift ${{ matrix.command }}
+        env:
+          SESSION_COOKIE: ${{ secrets.SESSION_COOKIE }}
 
