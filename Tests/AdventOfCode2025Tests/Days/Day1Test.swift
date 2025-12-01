@@ -14,16 +14,13 @@ import Testing
         L99
         R14
         L82
-        """
+        """.components(separatedBy: "\n")
 
-    #expect(Day1(input).part1() == 3)
+    #expect(Day1(input: input).part1() == 3)
 }
 
 @Test func day1part1() {
-    let day1 = Day1("")
-    day1.setInput(filename: "Day1.txt")
-
-    #expect(day1.part1() == 1078)
+    #expect(Day1(filename: "Day1.txt").part1() == 1078)
 }
 
 @Test func day1part2ex1() {
@@ -38,14 +35,11 @@ import Testing
         L99
         R14
         L82
-        """
+        """.components(separatedBy: "\n")
 
-    #expect(Day1(input).part2() == 6)
+    #expect(Day1(input: input).part2() == 6)
 }
 
 @Test func day1part2() {
-    let day1 = Day1("")
-    day1.setInput(filename: "Day1.txt")
-
-    #expect(day1.part2() == 6412)
+    #expect(Day1(filename: "Day1.txt").part2() == 6412)
 }

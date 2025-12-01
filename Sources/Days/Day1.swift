@@ -1,21 +1,7 @@
 import Foundation
 
-class Day1 {
-    var input: [String]
+class Day1: BaseDay {
     let directionAndNumber = #/(?<dir>L|R)(?<clicks>\d+)/#
-
-    init(_ input: String) {
-        self.input = input.components(separatedBy: "\n")
-    }
-
-    public func setInput(filename: String) {
-        self.input = try! String(
-            contentsOf: URL(fileURLWithPath: FileManager().currentDirectoryPath)
-                .appendingPathComponent(
-                    "Inputs/\(filename)"),
-            encoding: .utf8
-        ).components(separatedBy: "\n")
-    }
 
     private func part(_ isPart2: Bool) -> Int {
         var count = 0
@@ -48,11 +34,11 @@ class Day1 {
         return count
     }
 
-    public func part1() -> Int {
+    override func part1() -> Int {
         return part(false)
     }
 
-    public func part2() -> Int {
+    override func part2() -> Int {
         return part(true)
     }
 }
