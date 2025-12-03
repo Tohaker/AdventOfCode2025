@@ -6,18 +6,20 @@ struct AdventOfCode2025: AsyncParsableCommand {
     public var day: String
 
     mutating func run() async throws {
+        var dayImplementation: BaseDay
+
         switch day {
         case "1":
-            let day = try await Day1(day: 1)
-            print("Part 1: \(day.part1())\nPart 2: \(day.part2())")
+            dayImplementation = try await Day1(day: 1)
         case "2":
-            let day = try await Day2(day: 2)
-            print("Part 1: \(day.part1())\nPart 2: \(day.part2())")
+            dayImplementation = try await Day2(day: 2)
         case "3":
-            let day = try await Day3(day: 3)
-            print("Part 1: \(day.part1())\nPart 2: \(day.part2())")
+            dayImplementation = try await Day3(day: 3)
         default:
             print("Day \(day) has not been solved yet")
+            return
         }
+
+        print("Part 1: \(dayImplementation.part1())\nPart 2: \(dayImplementation.part2())")
     }
 }
