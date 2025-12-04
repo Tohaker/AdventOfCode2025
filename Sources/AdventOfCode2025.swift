@@ -15,11 +15,14 @@ struct AdventOfCode2025: AsyncParsableCommand {
             dayImplementation = try await Day2(day: 2)
         case "3":
             dayImplementation = try await Day3(day: 3)
+        case "4":
+            dayImplementation = try await Day4(day: 4)
         default:
             print("Day \(day) has not been solved yet")
             return
         }
 
-        print("Part 1: \(dayImplementation.part1())\nPart 2: \(dayImplementation.part2())")
+        print("Part 1: \(dayImplementation.part1())")
+        print("Part 2: \(dayImplementation.part2())")
     }
 }

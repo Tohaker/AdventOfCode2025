@@ -16,7 +16,7 @@ class BaseDay {
                     .appendingPathComponent(
                         "Inputs/\(filename)"),
                 encoding: .utf8
-            ).components(separatedBy: "\n")
+            ).split(whereSeparator: \.isNewline).map { String($0) }
     }
 
     init(day: Int) async throws {
@@ -36,8 +36,9 @@ class BaseDay {
             let (data, _) = try await URLSession.shared.data(for: request)
 
             self.input =
-                String(bytes: data, encoding: String.Encoding.utf8)?.components(
-                    separatedBy: "\n") ?? []
+                String(bytes: data, encoding: String.Encoding.utf8)?.split(
+                    whereSeparator: \.isNewline
+                ).map { String($0) } ?? []
         } else {
             throw NSError(domain: "Missing SESSION_COOKIE environment variable", code: 400)
         }
