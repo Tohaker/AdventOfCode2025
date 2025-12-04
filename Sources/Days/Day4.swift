@@ -21,45 +21,22 @@ class Day4: BaseDay {
     }
 
     private func countAdjacentRolls(grid: [[String]], x: Int, y: Int) -> Int {
-        var count = 0
+        let checks = [
+            grid[y][x - 1],
+            grid[y][x + 1],
+            grid[y - 1][x],
+            grid[y + 1][x],
+            grid[y - 1][x - 1],
+            grid[y - 1][x + 1],
+            grid[y + 1][x - 1],
+            grid[y + 1][x + 1],
+        ]
 
-        if grid[y][x - 1] == "@" {
-            count += 1
-        }
-
-        if grid[y][x + 1] == "@" {
-            count += 1
-        }
-
-        if grid[y - 1][x] == "@" {
-            count += 1
-        }
-
-        if grid[y + 1][x] == "@" {
-            count += 1
-        }
-
-        if grid[y - 1][x - 1] == "@" {
-            count += 1
-        }
-
-        if grid[y - 1][x + 1] == "@" {
-            count += 1
-        }
-
-        if grid[y + 1][x - 1] == "@" {
-            count += 1
-        }
-
-        if grid[y + 1][x + 1] == "@" {
-            count += 1
-        }
-
-        return count
+        return checks.filter { $0 == "@" }.count
     }
 
-    private func countAccessibleRolls(extendedGrid: [[String]]) -> Int {
-        var total = 0
+    private func markAccessibleRolls(extendedGrid: [[String]]) -> [(x: Int, y: Int)] {
+        var rolls: [(x: Int, y: Int)] = []
 
         let height = extendedGrid.count - 2
         let width = extendedGrid[0].count - 2
@@ -69,18 +46,41 @@ class Day4: BaseDay {
                 if extendedGrid[y][x] == "@"
                     && countAdjacentRolls(grid: extendedGrid, x: x, y: y) < 4
                 {
-                    total += 1
+                    rolls.append((x: x, y: y))
                 }
             }
         }
 
-        return total
+        return rolls
     }
 
     override func part1() -> Int {
         let originalGrid = self.input.map { $0.map { String($0) } }
         let extendedGrid = extend(grid: originalGrid)
 
-        return countAccessibleRolls(extendedGrid: extendedGrid)
+        return markAccessibleRolls(extendedGrid: extendedGrid).count
+    }
+
+    override func part2() -> Int {
+        let originalGrid = self.input.map { $0.map { String($0) } }
+        var extendedGrid = extend(grid: originalGrid)
+
+        var rollsRemoved = 0
+
+        while true {
+            let accessibleRolls = markAccessibleRolls(extendedGrid: extendedGrid)
+
+            if accessibleRolls.count == 0 {
+                break
+            }
+
+            for roll in accessibleRolls {
+                extendedGrid[roll.y][roll.x] = "."
+            }
+
+            rollsRemoved += accessibleRolls.count
+        }
+
+        return rollsRemoved
     }
 }
