@@ -28,5 +28,5 @@ import Testing
 @Test func day7part1() async throws {
     let day = try await Day7(day: 7)
 
-    #expect(day.part1() == 1333)
+    #expect(day.part1() == 1681)
 }

@@ -13,6 +13,14 @@ struct Coordinate: Hashable {
         hasher.combine(self.x)
         hasher.combine(self.y)
     }
+
+    func getUnderneath() -> Coordinate {
+        return Coordinate(self.x, self.y + 1)
+    }
+
+    func getSplit() -> [Coordinate] {
+        return [Coordinate(self.x - 1, self.y + 1), Coordinate(self.x + 1, self.y + 1)]
+    }
 }
 
 class Day7: BaseDay {
@@ -47,12 +55,18 @@ class Day7: BaseDay {
 
         var beams = Set<Coordinate>([Coordinate(start.x, 1)])
 
-        for y in 2..<self.input.count {
-            // Filter out beams that aren't directly above this line
-            for beam in beams.filter({ $0.y + 1 == y }) {
-                if splitters.contains(where: { $0.x == beam.x && $0.y == beam.y + 1 }) {
-                    beams.formUnion([Coordinate(beam.x - 1, y + 1), Coordinate(beam.x + 1, y + 1)])
+        for y in 1..<self.input.count {
+            for beam in beams.filter({ $0.y == y }) {
+                // Calculate the next position of the beam
+                let nextPosition = beam.getUnderneath()
 
+                // If the position is not a splitter, move the beam
+                if !splitters.contains(nextPosition) {
+                    beams.insert(nextPosition)
+                }
+                // If the position is a splitter, split the beam instead and count
+                else {
+                    beams.formUnion(beam.getSplit())
                     count += 1
                 }
             }
