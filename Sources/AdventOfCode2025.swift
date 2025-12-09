@@ -1,3 +1,4 @@
+import Algorithms
 import ArgumentParser
 
 @main
@@ -23,6 +24,8 @@ struct AdventOfCode2025: AsyncParsableCommand {
             dayImplementation = try await Day6(day: 6)
         case "8":
             dayImplementation = try await Day8(day: 8)
+        case "9":
+            dayImplementation = try await Day9(day: 9)
         default:
             print("Day \(day) has not been solved yet")
             return
