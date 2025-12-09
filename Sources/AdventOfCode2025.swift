@@ -21,6 +21,8 @@ struct AdventOfCode2025: AsyncParsableCommand {
             dayImplementation = try await Day5(day: 5)
         case "6":
             dayImplementation = try await Day6(day: 6)
+        case "8":
+            dayImplementation = try await Day8(day: 8)
         default:
             print("Day \(day) has not been solved yet")
             return

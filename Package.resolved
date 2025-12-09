@@ -1,5 +1,5 @@
 {
-  "originHash" : "86ee46fc31be7436ecbd538b572c5b8dfde81e0231ba762eded084a227f99a96",
+  "originHash" : "2faffa0a02e69a60f80ee3dea1fe4335cbb85f4d91c0f6ffb8e3a518fa03ca75",
   "pins" : [
     {
       "identity" : "dotenv",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "1f15bb9de727d694af1d003a1a5d7a553752850f",
         "version" : "3.0.0"
+      }
+    },
+    {
+      "identity" : "swift-algorithms",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-algorithms",
+      "state" : {
+        "revision" : "87e50f483c54e6efd60e885f7f5aa946cee68023",
+        "version" : "1.2.1"
       }
     },
     {
@@ -44,6 +53,15 @@
       "state" : {
         "revision" : "3eea09220e07d34ace722221cbda90306f48c86c",
         "version" : "2.90.1"
+      }
+    },
+    {
+      "identity" : "swift-numerics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-numerics.git",
+      "state" : {
+        "revision" : "0c0290ff6b24942dadb83a929ffaaa1481df04a2",
+        "version" : "1.1.1"
       }
     },
     {
