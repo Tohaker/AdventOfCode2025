@@ -31,3 +31,9 @@ import Testing
 
     #expect(day.part1() == 40)
 }
+
+@Test func day8part1() async throws {
+    let day = try await Day8(day: 8)
+
+    #expect(day.part1() == 68112)
+}
